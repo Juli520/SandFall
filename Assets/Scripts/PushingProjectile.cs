@@ -14,9 +14,8 @@ public class PushingProjectile : MonoBehaviour
     {
         if (collision.gameObject.layer == 8)
         {
-            collision.gameObject.GetComponent<Rigidbody>();
-            collision.rigidbody.AddForce(Vector3.forward * force, ForceMode.Impulse);
-            Destroy(this.gameObject);
+            collision.rigidbody.AddForce(transform.forward * force, ForceMode.Impulse);
+            Destroy(gameObject);
         }
     }
 }

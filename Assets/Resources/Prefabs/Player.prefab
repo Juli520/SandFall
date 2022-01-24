@@ -128,3 +128,5 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 512
+  fireRate: 1
+  bullet: {fileID: 1507289432870520525, guid: 2ac468f0e30c2ed4a9798620d9e29b34, type: 3}
