@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class Player : MonoBehaviour
         _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
+    private void Start()
+    {
+        transform.forward = new Vector3(_cam.transform.forward.x, 0, _cam.transform.forward.z);
+    }
+
     void Update()
     {
         ProccesInput();
@@ -29,11 +35,6 @@ public class Player : MonoBehaviour
 
         if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
             Jump();
-    }
-
-    private void FixedUpdate()
-    {
-        transform.forward = new Vector3(_cam.transform.forward.x, 0, _cam.transform.forward.z);
     }
 
     private void ProccesInput()
