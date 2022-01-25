@@ -2,10 +2,7 @@
 
 public class PlayerInput : MonoBehaviour
 {
-    [Header("Movement")]
-    public float speed = 5;
-    public float jumpForce = 7;
-    public LayerMask mask;
+    public LayerMask groundMask;
 
     private float _currentFireRate;
     private float _horizontalMovement;
@@ -14,12 +11,14 @@ public class PlayerInput : MonoBehaviour
     private Rigidbody _rb;
     private CapsuleCollider _col;
     private Camera _cam;
+    private PlayerState _state;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
         _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        _state = GetComponent<PlayerState>();
     }
 
     private void FixedUpdate()
@@ -43,17 +42,17 @@ public class PlayerInput : MonoBehaviour
 
     private void MovePlayer()
     {
-        _rb.velocity = new Vector3(_moveDirection.normalized.x * speed, _rb.velocity.y, _moveDirection.normalized.z * speed);
+        _rb.velocity = new Vector3(_moveDirection.normalized.x * _state.speed, _rb.velocity.y, _moveDirection.normalized.z * _state.speed);
     }
 
     private void Jump()
     {
-        _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        _rb.AddForce(Vector3.up * _state.jumpForce, ForceMode.Impulse);
     }
 
     private bool IsGrounded()
     {
         Bounds bounds = _col.bounds;
-        return Physics.CheckCapsule(bounds.center, new Vector3(bounds.center.x, bounds.min.y, bounds.center.z), _col.radius * .9f, mask);
+        return Physics.CheckCapsule(bounds.center, new Vector3(bounds.center.x, bounds.min.y, bounds.center.z), _col.radius * .9f, groundMask);
     }
 }
