@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Fall : MonoBehaviour
+public class Sand : MonoBehaviour
 {
+    public float standTime = 1f;
+    public float destroyTime = 0.5f;
+    
     private Rigidbody _rb;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-    }
-
-    private void Start()
-    {
         _rb.useGravity = false;
     }
 
@@ -21,14 +20,14 @@ public class Fall : MonoBehaviour
             StartCoroutine(WaitForFall());
     }
 
-    IEnumerator WaitForFall()
+    private IEnumerator WaitForFall()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(standTime);
         
         _rb.useGravity = true;
         _rb.constraints = RigidbodyConstraints.None;
 
-        yield return new WaitForSeconds(1);
-        Destroy(this.gameObject);
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(gameObject);
     }
 }
