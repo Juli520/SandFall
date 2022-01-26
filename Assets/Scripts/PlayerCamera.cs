@@ -7,6 +7,9 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
+        if (target == null)
+            return;
+        
         transform.position = new Vector3(transform.position.x, target.transform.position.y + distance, transform.position.z);
     }
 }
