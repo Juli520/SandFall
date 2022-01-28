@@ -13,7 +13,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public string level;
     public string menu;
     public GameObject error;
-    public GameObject continueButton;
+    //public GameObject continueButton;
     private string _roomName = string.Empty;
 
     private void Awake()
@@ -100,7 +100,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CheckPlayerCount()
     {
-        if (PhotonNetwork.PlayerList.Length == 2)
+        if (PhotonNetwork.PlayerList.Length == 4)
             photonView.RPC("StartGame", RpcTarget.All);
         else
             error.SetActive(true);
@@ -115,11 +115,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(level);
     }
 
-    public override void OnConnected()
+    /*public override void OnConnected()
     {
         if (PhotonNetwork.IsConnected)
             continueButton.SetActive(true);    
-    }
+    }*/
 
     public void MainMenu()
     {
