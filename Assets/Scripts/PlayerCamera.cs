@@ -9,6 +9,9 @@ public class PlayerCamera : MonoBehaviourPun
     private void Update()
     {
         if(!photonView.IsMine) return;
+		
+        if (target == null)
+            return;
         
         transform.position = new Vector3(transform.position.x, target.transform.position.y + distance, transform.position.z);
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7548671644275705515}
   - component: {fileID: 7548671644275705512}
-  - component: {fileID: -6365669569675707461}
+  - component: {fileID: 8472738453610673358}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   dropHeight: 60
   jumpPowerUp: {fileID: 5924856594585773958, guid: 4971f5ed6d4e18943b1ecba6300670a4,
     type: 3}
---- !u!114 &-6365669569675707461
+--- !u!114 &8472738453610673358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,16 +59,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7548671644275705514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Script: {fileID: 11500000, guid: 73bd7219cc818074dabf3d75fb3c9fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
+  timeText: {fileID: 0}
