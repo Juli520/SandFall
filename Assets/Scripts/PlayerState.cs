@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState : MonoBehaviourPun
 {
     [Header("Movement")]
     public float speed = 5;

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using Photon.Pun;
 using UnityEngine;
 
-public class JumpPowerUp : MonoBehaviour
+public class JumpPowerUp : MonoBehaviourPun
 {
     public float duration = 5f;
     public float multiplier = 2f;
@@ -17,6 +14,8 @@ public class JumpPowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(!photonView.IsMine) return;
+        
         if (other.gameObject.layer == 8)
         {
             other.gameObject.GetComponent<PlayerState>().ApplyBuff(multiplier, duration);

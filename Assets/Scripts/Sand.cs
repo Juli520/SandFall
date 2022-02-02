@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
-public class Sand : MonoBehaviour
+public class Sand : MonoBehaviourPun
 {
     public float standTime = 1f;
     public float destroyTime = 0.5f;
@@ -16,6 +17,8 @@ public class Sand : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(!photonView.IsMine) return;
+        
         if (collision.gameObject.layer == 8)
             StartCoroutine(WaitForFall());
     }

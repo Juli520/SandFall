@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviourPun
 {
     public LayerMask groundMask;
 
@@ -23,6 +24,8 @@ public class PlayerInput : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(!photonView.IsMine) return; 
+        
         ProcessInput();
         MovePlayer();
 
