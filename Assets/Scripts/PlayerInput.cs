@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
     private Camera _cam;
     private PlayerState _state;
     private Animator _animator;
+    private static readonly int IsJumping = Animator.StringToHash("IsJumping");
+    private static readonly int IsRunnig = Animator.StringToHash("IsRunning");
 
     private void Awake()
     {
@@ -27,7 +29,7 @@ public class PlayerInput : MonoBehaviour
     {
         ProcessInput();
 
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
+        if (CheckGround() && Input.GetKeyDown(KeyCode.Space))
             Jump();
     }
 
@@ -43,9 +45,16 @@ public class PlayerInput : MonoBehaviour
 
         if (movementDirection != Vector3.zero)
         {
+            _animator.SetBool(IsRunnig, true);
+            
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation =
                 Quaternion.RotateTowards(transform.rotation, toRotation, _state.rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // Player is not running
+            _animator.SetBool(IsRunnig, false);    
         }
     }
 
@@ -54,9 +63,13 @@ public class PlayerInput : MonoBehaviour
         _rb.AddForce(Vector3.up * _state.jumpForce, ForceMode.Impulse);
     }
 
-    private bool IsGrounded()
+    private bool CheckGround()
     {
         Bounds bounds = _col.bounds;
-        return Physics.CheckCapsule(bounds.center, new Vector3(bounds.center.x, bounds.min.y, bounds.center.z), _col.radius * .9f, groundMask);
+        bool isGrounded = Physics.CheckCapsule(bounds.center, new Vector3(bounds.center.x, bounds.min.y, bounds.center.z), _col.radius * .9f, groundMask);
+        
+        _animator.SetBool(IsJumping, !isGrounded);
+        
+        return isGrounded;
     }
 }

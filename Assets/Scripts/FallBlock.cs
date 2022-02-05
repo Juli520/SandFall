@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Sand : MonoBehaviour
+public class FallBlock : MonoBehaviour
 {
     public float standTime = 1f;
     public float destroyTime = 0.5f;
