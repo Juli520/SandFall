@@ -8,6 +8,7 @@ public class PlayerState : MonoBehaviour
     [Header("Movement")]
     public float speed = 5;
     public float jumpForce = 7;
+    public float rotationSpeed = 5;
     [Header("Death")]
     public float deathHeight = 0f;
     

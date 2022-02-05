@@ -12,24 +12,23 @@ public class PlayerInput : MonoBehaviour
     private CapsuleCollider _col;
     private Camera _cam;
     private PlayerState _state;
+    private Animator _animator;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
-        _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        _cam = Camera.main;
         _state = GetComponent<PlayerState>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void FixedUpdate()
     {
         ProcessInput();
-        MovePlayer();
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
             Jump();
-        
-        transform.forward = new Vector3(_cam.transform.forward.x, 0, _cam.transform.forward.z);
     }
 
     private void ProcessInput()
@@ -37,12 +36,17 @@ public class PlayerInput : MonoBehaviour
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
         _verticalMovement = Input.GetAxisRaw("Vertical");
 
-        _moveDirection = transform.forward * _verticalMovement + transform.right * _horizontalMovement;
-    }
+        Vector3 movementDirection = new Vector3(_horizontalMovement, 0, _verticalMovement);
+        movementDirection.Normalize();
+        
+        transform.Translate(movementDirection * _state.speed * Time.deltaTime, Space.World);
 
-    private void MovePlayer()
-    {
-        _rb.velocity = new Vector3(_moveDirection.normalized.x * _state.speed, _rb.velocity.y, _moveDirection.normalized.z * _state.speed);
+        if (movementDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            transform.rotation =
+                Quaternion.RotateTowards(transform.rotation, toRotation, _state.rotationSpeed * Time.deltaTime);
+        }
     }
 
     private void Jump()
