@@ -33,8 +33,6 @@ public class PlayerInput : MonoBehaviourPun
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
             Jump();
-        
-        transform.forward = new Vector3(_cam.transform.forward.x, 0, _cam.transform.forward.z);
     }
 
     private void ProcessInput()

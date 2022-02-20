@@ -35,7 +35,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 3.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 625044085666817074}
+  - {fileID: 2058736137195924049}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -130,6 +130,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 5
   deathHeight: 0
+  myCam: {fileID: 2058736137195924050}
 --- !u!114 &4298300779154286788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,9 +276,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c312651135bce7244862e2ddbea4b82c, type: 3}
---- !u!4 &625044085666817074 stripped
+--- !u!4 &2058736137195924049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1458748272263007093, guid: c312651135bce7244862e2ddbea4b82c,
+    type: 3}
+  m_PrefabInstance: {fileID: 625044085666816292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2058736137195924050 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1458748272263007094, guid: c312651135bce7244862e2ddbea4b82c,
     type: 3}
   m_PrefabInstance: {fileID: 625044085666816292}
   m_PrefabAsset: {fileID: 0}
