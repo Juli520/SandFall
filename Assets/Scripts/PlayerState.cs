@@ -11,13 +11,29 @@ public class PlayerState : MonoBehaviourPun
     [Header("Death")]
     public float deathHeight = -2f;
     
+    [SerializeField] Camera myCam;
+    Photon.Realtime.Player myPlayer;
+    
     private float _baseJumpForce;
     
     private void Awake()
     {
-        if(!photonView.IsMine) return;
+        if (!photonView.IsMine)
+        {
+            Destroy(myCam.gameObject);
+        }
+        else
+        {
+            photonView.RPC("SetOwn", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer);
+        }
 
         _baseJumpForce = jumpForce;
+    }
+    
+    [PunRPC]
+    private void SetOwn(Photon.Realtime.Player _myPlayer)
+    {
+        myPlayer = _myPlayer;
     }
 
     private void Update()
