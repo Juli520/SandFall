@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviourPun
 {
     public LayerMask groundMask;
 
@@ -15,6 +16,8 @@ public class PlayerInput : MonoBehaviour
 
     private void Awake()
     {
+        if(!photonView.IsMine) return;
+        
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
         _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -23,13 +26,13 @@ public class PlayerInput : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(!photonView.IsMine) return; 
+        
         ProcessInput();
         MovePlayer();
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
             Jump();
-        
-        transform.forward = new Vector3(_cam.transform.forward.x, 0, _cam.transform.forward.z);
     }
 
     private void ProcessInput()

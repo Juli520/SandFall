@@ -1,31 +1,53 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState : MonoBehaviourPun
 {
     [Header("Movement")]
     public float speed = 5;
     public float jumpForce = 7;
     [Header("Death")]
-    public float deathHeight = 0f;
+    public float deathHeight = -2f;
+    
+    [SerializeField] Camera myCam;
+    Photon.Realtime.Player myPlayer;
     
     private float _baseJumpForce;
     
     private void Awake()
     {
+        if (!photonView.IsMine)
+        {
+            Destroy(myCam.gameObject);
+        }
+        else
+        {
+            photonView.RPC("SetOwn", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer);
+        }
+
         _baseJumpForce = jumpForce;
+    }
+    
+    [PunRPC]
+    private void SetOwn(Photon.Realtime.Player _myPlayer)
+    {
+        myPlayer = _myPlayer;
     }
 
     private void Update()
     {
+        if(!photonView.IsMine) return;
+        
         if (transform.position.y <= deathHeight)
             KillPlayer();
     }
 
     public void ApplyBuff(float multiplier, float duration)
     {
+        if(!photonView.IsMine) return;
+        
         StartCoroutine(Apply(multiplier, duration));
     }
     
@@ -44,6 +66,7 @@ public class PlayerState : MonoBehaviour
 
     private void KillPlayer()
     {
-        Destroy(gameObject);
+        photonView.RPC("SummPlayersDead", RpcTarget.All);
+        PhotonNetwork.Destroy(gameObject);
     }
 }

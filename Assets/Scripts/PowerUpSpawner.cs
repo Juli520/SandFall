@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Photon.Pun;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PowerUpSpawner : MonoBehaviour
+public class PowerUpSpawner : MonoBehaviourPun
 {
     public float timeToSpawn = 20f;
     public float boundaryX;
@@ -21,6 +19,8 @@ public class PowerUpSpawner : MonoBehaviour
 
     private void Update()
     {
+        if(!photonView.IsMine) return;
+        
         if (_currentTime <= 0)
             Spawn();
         else
