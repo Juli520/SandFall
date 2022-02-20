@@ -19,7 +19,7 @@ public class JumpPowerUp : MonoBehaviourPun
         if (other.gameObject.layer == 8)
         {
             other.gameObject.GetComponent<PlayerState>().ApplyBuff(multiplier, duration);
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }

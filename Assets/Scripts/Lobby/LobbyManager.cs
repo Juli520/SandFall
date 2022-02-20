@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
+﻿using Photon.Pun;
 using Photon.Realtime;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +9,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public string level;
     public string menu;
     public GameObject error;
-    //public GameObject continueButton;
+    public GameObject continueButton;
     private string _roomName = string.Empty;
 
     private void Awake()
@@ -50,6 +46,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             PhotonNetwork.LocalPlayer.NickName == string.Empty)
             return;
 
+        
+        
         PhotonNetwork.JoinRoom(_roomName);
     }
 
@@ -100,10 +98,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CheckPlayerCount()
     {
-        if (PhotonNetwork.PlayerList.Length == 4)
-            photonView.RPC("StartGame", RpcTarget.All);
-        else
-            error.SetActive(true);
+        //if (PhotonNetwork.PlayerList.Length == 4)
+        photonView.RPC("StartGame", RpcTarget.All);
+        //else
+            //error.SetActive(true);
     }
     
     [PunRPC]
@@ -115,11 +113,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(level);
     }
 
-    /*public override void OnConnected()
+    public override void OnConnected()
     {
         if (PhotonNetwork.IsConnected)
             continueButton.SetActive(true);    
-    }*/
+    }
 
     public void MainMenu()
     {

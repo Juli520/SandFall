@@ -16,6 +16,8 @@ public class PlayerInput : MonoBehaviourPun
 
     private void Awake()
     {
+        if(!photonView.IsMine) return;
+        
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
         _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
