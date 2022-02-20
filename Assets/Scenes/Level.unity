@@ -411,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345621832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 99, z: 12}
+  m_LocalPosition: {x: 0, y: 12.9, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1501469042}
@@ -715,6 +715,11 @@ PrefabInstance:
       propertyPath: m_RotationModel.SynchronizeEnabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 625044085666821140, guid: dde95bde8c660384cacf0a6984d37a0e,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 732
+      objectReference: {fileID: 0}
     - target: {fileID: 2250637897027611006, guid: dde95bde8c660384cacf0a6984d37a0e,
         type: 3}
       propertyPath: sceneViewId
@@ -832,7 +837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088274659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 99, z: 0}
+  m_LocalPosition: {x: 0, y: 12.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1501469042}
