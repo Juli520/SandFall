@@ -15,7 +15,7 @@ public class JumpPowerUp : MonoBehaviour
         Destroy(gameObject, timeToDestroy);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == 8)
         {
