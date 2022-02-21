@@ -668,6 +668,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform 19 x 19 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1379678303788983934, guid: de5279763a822ab48bd08e39a6215db0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1393402382719382530, guid: de5279763a822ab48bd08e39a6215db0,
         type: 3}
       propertyPath: sceneViewId
@@ -2260,6 +2265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Platform 19 x 19 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379678303788983934, guid: de5279763a822ab48bd08e39a6215db0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1393402382719382530, guid: de5279763a822ab48bd08e39a6215db0,
         type: 3}
@@ -4017,6 +4027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Platform 19 x 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379678303788983934, guid: de5279763a822ab48bd08e39a6215db0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1393402382719382530, guid: de5279763a822ab48bd08e39a6215db0,
         type: 3}

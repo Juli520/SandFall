@@ -16,26 +16,14 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
-    Name: Walk Forward
+    SynchronizeType: 1
+    Name: IsRunning
   - Type: 4
-    SynchronizeType: 0
-    Name: Run Forward
-  - Type: 9
-    SynchronizeType: 0
-    Name: Jump
-  - Type: 9
-    SynchronizeType: 0
-    Name: Attack 01
-  - Type: 9
-    SynchronizeType: 0
-    Name: Attack 02
-  - Type: 9
-    SynchronizeType: 0
-    Name: Take Damage
-  - Type: 9
-    SynchronizeType: 0
-    Name: Die
+    SynchronizeType: 1
+    Name: IsJumping
+  - Type: 4
+    SynchronizeType: 1
+    Name: IsAttacking
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -74,7 +62,7 @@ Transform:
   m_Children:
   - {fileID: 2042492654132982535}
   - {fileID: 7046971924319217914}
-  - {fileID: 652360899815153774}
+  - {fileID: 2104066249245172269}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -127,7 +115,7 @@ MonoBehaviour:
   pushForce: 3
   hitBox: {fileID: 4302444944126764899}
   deathHeight: 0
-  _myCam: {fileID: 652360899815153773}
+  _myCam: {fileID: 2104066249245172116}
 --- !u!114 &4298300779154286788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +151,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6354568582350737998}
+  - {fileID: 1870597218360942595}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -311,6 +300,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95782878299265946, guid: 84493eaa65d75074ca2c6e2d8a90ff9a,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 95d57195f1ba04c47bac13bf088588a5, type: 2}
     - target: {fileID: 137937364085243502, guid: 84493eaa65d75074ca2c6e2d8a90ff9a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -404,13 +398,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c312651135bce7244862e2ddbea4b82c, type: 3}
---- !u!4 &652360899815153774 stripped
+--- !u!4 &2104066249245172269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1458748272263007093, guid: c312651135bce7244862e2ddbea4b82c,
     type: 3}
   m_PrefabInstance: {fileID: 2104066249245174555}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &652360899815153773 stripped
+--- !u!20 &2104066249245172116 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1458748272263007094, guid: c312651135bce7244862e2ddbea4b82c,
     type: 3}

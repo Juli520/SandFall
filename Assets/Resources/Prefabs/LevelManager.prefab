@@ -77,7 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0b5bca2b9db3044b67688bf1214b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4298300779154286789, guid: d7894031aaff8674e90faa5c2a809c20, type: 3}
+  players:
+  - {fileID: 4298300779154286789, guid: d7894031aaff8674e90faa5c2a809c20, type: 3}
+  - {fileID: 4298300779154286789, guid: da03eda70ce270540b9a2699c7d3fe54, type: 3}
+  - {fileID: 4298300779154286789, guid: 310cb148185ed9045bc6ae9b2b2a8057, type: 3}
+  - {fileID: 4298300779154286789, guid: b89cf712b08accc468070f8891162fb5, type: 3}
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
