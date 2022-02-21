@@ -16,15 +16,15 @@ public class PlayerState : MonoBehaviourPun
     [Header("Death")]
     public float deathHeight = -2f;
     
-    [SerializeField] Camera myCam;
-    Photon.Realtime.Player myPlayer;
+    [SerializeField] private Camera _myCam;
+    private Photon.Realtime.Player _myPlayer;
     
     private float _baseJumpForce;
     
     private void Awake()
     {
         if (!photonView.IsMine)
-            Destroy(myCam.gameObject);
+            Destroy(_myCam.gameObject);
         else
             photonView.RPC("SetOwn", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer);
 
@@ -34,7 +34,7 @@ public class PlayerState : MonoBehaviourPun
     [PunRPC]
     private void SetOwn(Photon.Realtime.Player _myPlayer)
     {
-        myPlayer = _myPlayer;
+        this._myPlayer = _myPlayer;
     }
 
     private void Update()
