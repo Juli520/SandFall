@@ -12,7 +12,7 @@ public class JumpPowerUp : MonoBehaviourPun
         Destroy(gameObject, timeToDestroy);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if(!photonView.IsMine) return;
         
