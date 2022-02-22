@@ -44,6 +44,9 @@ MonoBehaviour:
   - LoadWinScene
   - SummPlayersDead
   - SetOwn
+  - LoadLoseSceneRPC
+  - LoadWinSceneRPC
+  - SummPlayersDeadRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
