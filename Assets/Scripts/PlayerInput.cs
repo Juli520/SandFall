@@ -11,7 +11,6 @@ public class PlayerInput : MonoBehaviourPun
     private Vector3 _moveDirection;
     private Rigidbody _rb;
     private CapsuleCollider _col;
-    private Camera _cam;
     private PlayerState _state;
 
     private void Awake()
@@ -20,7 +19,6 @@ public class PlayerInput : MonoBehaviourPun
         
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<CapsuleCollider>();
-        _cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         _state = GetComponent<PlayerState>();
     }
 

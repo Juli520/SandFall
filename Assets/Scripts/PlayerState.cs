@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
@@ -13,19 +12,18 @@ public class PlayerState : MonoBehaviourPun
     
     [SerializeField] Camera myCam;
     Photon.Realtime.Player myPlayer;
-    
+
+    private LevelManager _lvlManager;
     private float _baseJumpForce;
     
     private void Awake()
     {
         if (!photonView.IsMine)
-        {
             Destroy(myCam.gameObject);
-        }
         else
-        {
             photonView.RPC("SetOwn", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer);
-        }
+
+        _lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
         _baseJumpForce = jumpForce;
     }
@@ -66,7 +64,8 @@ public class PlayerState : MonoBehaviourPun
 
     private void KillPlayer()
     {
-        photonView.RPC("SummPlayersDead", RpcTarget.All);
+        _lvlManager.SummPlayersDead();
+        _lvlManager.LoadLoseScene();
         PhotonNetwork.Destroy(gameObject);
     }
 }

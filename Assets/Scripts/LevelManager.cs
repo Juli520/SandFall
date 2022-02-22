@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviourPun
@@ -11,9 +8,8 @@ public class LevelManager : MonoBehaviourPun
 
     [Header("Scene Changer")] 
     [HideInInspector] public int playersDead;
-    [HideInInspector] public bool iAlive;
-    //public string loseScene;
-    //public string winScene;
+    public string loseScene;
+    public string winScene;
 
     private void Start()
     {
@@ -27,35 +23,37 @@ public class LevelManager : MonoBehaviourPun
             PhotonNetwork.Instantiate(player.name, spawnPoints[3].position, Quaternion.identity);
     }
 
-    //private void Update()
-    //{
-    //    if(!photonView.IsMine) return;
-    //    
-    //    if(playersDead == 3 && iAlive)
-    //        photonView.RPC("LoadWinScene", photonView.Owner);
-    //    else if(playersDead == 3 && !iAlive)
-    //        photonView.RPC("LoadLoseScene", photonView.Owner);
-    //}
+    private void Update()
+    {
+        if(!photonView.IsMine) return;
+        
+        if(playersDead == 3)
+            LoadWinScene();
+            
+    }
 
-    //[PunRPC]
-    //public void SummPlayersDead()
-    //{
-    //    playersDead++;
-    //}
+    public void SummPlayersDead()
+    {
+        photonView.RPC("SummPlayersDeadRPC", RpcTarget.All);
+    }
 
-    //[PunRPC]
-    //private void LoadWinScene()
-    //{
-    //    if(winScene == string.Empty) return;
-    //    
-    //    PhotonNetwork.LoadLevel(winScene);
-    //}
-    //
-    //[PunRPC]
-    //private void LoadLoseScene()
-    //{
-    //    if(loseScene == string.Empty) return;
-    //    
-    //    PhotonNetwork.LoadLevel(loseScene);
-    //}
+    public void LoadWinScene()
+    {
+        if(winScene == string.Empty) return;
+        
+        PhotonNetwork.LoadLevel(winScene);
+    }
+
+    public void LoadLoseScene()
+    {
+        if(loseScene == string.Empty) return;
+        
+        PhotonNetwork.LoadLevel(loseScene);
+    }
+
+    [PunRPC]
+    public void SummPlayersDeadRPC()
+    {
+        playersDead++;
+    }
 }

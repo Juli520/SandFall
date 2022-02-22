@@ -85,6 +85,8 @@ MonoBehaviour:
   - {fileID: 0}
   playersDead: 0
   iAlive: 0
+  loseScene: LoseScene
+  winScene: WinScene
 --- !u!114 &5065351757075156377
 MonoBehaviour:
   m_ObjectHideFlags: 0

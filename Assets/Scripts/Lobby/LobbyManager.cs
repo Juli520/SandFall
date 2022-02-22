@@ -46,8 +46,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             PhotonNetwork.LocalPlayer.NickName == string.Empty)
             return;
 
-        
-        
         PhotonNetwork.JoinRoom(_roomName);
     }
 
@@ -64,7 +62,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             return;
 
         RoomOptions options = new RoomOptions();
-        options.MaxPlayers = 2;
+        options.MaxPlayers = 4;
         options.IsOpen = true;
         options.IsVisible = true;
 
