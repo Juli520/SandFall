@@ -37,7 +37,7 @@ public class PlayerState : MonoBehaviourPun
     [PunRPC]
     private void SetOwn(Photon.Realtime.Player _myPlayer)
     {
-        this._myPlayer = _myPlayer;
+        myPlayer = _myPlayer;
     }
 
     private void Update()
