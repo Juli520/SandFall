@@ -6,10 +6,16 @@ using UnityEngine.SceneManagement;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public static LobbyManager Instance;
-    public string level;
-    public string menu;
-    public GameObject error;
-    public GameObject continueButton;
+    [Header("Scene Change")]
+    public string sceneLevelName;
+    public string sceneMenuName;
+    [Header("Error Handling")]
+    public GameObject errorText;
+    [Header("Connection Handling")]
+    public GameObject connectingMenu;
+    public GameObject selectionMenu;
+    public GameObject mainMenu;
+    
     private string _roomName = string.Empty;
 
     private void Awake()
@@ -24,9 +30,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (SceneManager.GetActiveScene().buildIndex != 0)
             return;
-
-        OnConnected();
+        
         ConnectToServer();
+        OnConnected();
     }
 
     public void ConnectToServer()
@@ -34,41 +40,34 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    public void DisconnectToServer()
+    public void DisconnectFromServer()
     {
         PhotonNetwork.Disconnect();
     }
 
-    public void JoinRoom()
-    {
-        if (_roomName == string.Empty || _roomName == "" ||
-            PhotonNetwork.LocalPlayer.NickName == "" ||
-            PhotonNetwork.LocalPlayer.NickName == string.Empty)
-            return;
-
-        PhotonNetwork.JoinRoom(_roomName);
-    }
-
     public void LeaveLobby()
     {
-        PhotonNetwork.LeaveLobby();
+        //PhotonNetwork.LeaveLobby();
+        PhotonNetwork.LeaveRoom();
     }
 
-    public void CreateRoom()
+    public void JoinOrCreateRoom()
     {
         if (_roomName == string.Empty || _roomName == "" ||
             PhotonNetwork.LocalPlayer.NickName == "" ||
             PhotonNetwork.LocalPlayer.NickName == string.Empty)
             return;
+        
+        RoomOptions options = new RoomOptions
+        {
+            MaxPlayers = 4,
+            IsOpen = true,
+            IsVisible = true
+        };
 
-        RoomOptions options = new RoomOptions();
-        options.MaxPlayers = 4;
-        options.IsOpen = true;
-        options.IsVisible = true;
-
-        PhotonNetwork.CreateRoom(_roomName, options, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(_roomName, options, TypedLobby.Default);
     }
-
+    
     public void ChangeRoomName(string serverName)
     {
         _roomName = serverName;
@@ -105,21 +104,29 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void StartGame()
     {
-        if (level == string.Empty)
+        if (sceneLevelName == string.Empty)
             return;
 
-        PhotonNetwork.LoadLevel(level);
+        PhotonNetwork.LoadLevel(sceneLevelName);
     }
 
     public override void OnConnected()
     {
-        if (PhotonNetwork.IsConnected)
-            continueButton.SetActive(true);    
+        CheckConnection();
     }
 
+    public void CheckConnection()
+    {
+        if (PhotonNetwork.IsConnected && !mainMenu.activeSelf)
+        {
+            connectingMenu.SetActive(false);
+            selectionMenu.SetActive(true);
+        }   
+    }
+    
     public void MainMenu()
     {
         PhotonNetwork.Disconnect();
-        PhotonNetwork.LoadLevel(menu);
+        PhotonNetwork.LoadLevel(sceneMenuName);
     }
 }
