@@ -1,26 +1,32 @@
-﻿using Photon.Pun;
+﻿using System;
+using Photon.Pun;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviourPun
 {
+    public static LevelManager Instance = null;
+    
+    [Header("Objects")] 
     public GameObject[] players;
     public Transform[] spawnPoints;
-
-    [Header("Scene Changer")] 
-    [HideInInspector] public int playersDead;
+    [Header("Initial Count")] 
+    public float timeToStart = 5;
+    [Header("Scene Changer")]
     public string loseScene;
     public string winScene;
+    [HideInInspector] public int playersDead;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
-        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
-            PhotonNetwork.Instantiate("Prefabs/" + players[0].name, spawnPoints[0].position, Quaternion.identity);
-        else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
-            PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[1].position, Quaternion.identity);
-        else if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
-            PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[2].position, Quaternion.identity);
-        else if (PhotonNetwork.LocalPlayer.ActorNumber == 4)
-            PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[3].position, Quaternion.identity);
+        SpawnPlayers();
     }
 
     private void Update()
@@ -29,12 +35,30 @@ public class LevelManager : MonoBehaviourPun
         
         if(playersDead == 3)
             LoadWinScene();
-            
     }
 
-    public void SummPlayersDead()
+    private void SpawnPlayers()
     {
-        photonView.RPC("SummPlayersDeadRPC", RpcTarget.All);
+        switch (PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            case 1:
+                PhotonNetwork.Instantiate("Prefabs/" + players[0].name, spawnPoints[0].position, Quaternion.identity);
+                break;
+            case 2:
+                PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[1].position, Quaternion.identity);
+                break;
+            case 3:
+                PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[2].position, Quaternion.identity);
+                break;
+            case 4:
+                PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[3].position, Quaternion.identity);
+                break;
+        }
+    }
+    
+    public void SumPlayersDead()
+    {
+        photonView.RPC("SumPlayersDeadRPC", RpcTarget.All);
     }
 
     public void LoadWinScene()
@@ -52,7 +76,7 @@ public class LevelManager : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void SummPlayersDeadRPC()
+    public void SmmPlayersDeadRPC()
     {
         playersDead++;
     }

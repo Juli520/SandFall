@@ -70,7 +70,7 @@ public class PlayerState : MonoBehaviourPun
 
     private void KillPlayer()
     {
-        _lvlManager.SummPlayersDead();
+        _lvlManager.SumPlayersDead();
         _lvlManager.LoadLoseScene();
         PhotonNetwork.Destroy(gameObject);
     }
