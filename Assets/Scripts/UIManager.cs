@@ -8,19 +8,27 @@ public class UIManager : MonoBehaviour
 {
     public TMP_Text timeText;
     
-    private float _levelTime;
+    private float _timeToStart;
+
+    private void Start()
+    {
+        _timeToStart = LevelManager.Instance.timeToStart;
+    }
 
     private void Update()
     {
         if (timeText == null)
             return;
         
-        UpdateLevelTime();
+        if (_timeToStart > 0)
+            UpdateLevelTime();
+        else if (_timeToStart <= 0 && timeText.gameObject.activeSelf)
+            timeText.gameObject.SetActive(false);
     }
 
     private void UpdateLevelTime()
     {
-        _levelTime += Time.deltaTime;
-        timeText.text = _levelTime.ToString("F2");
+        _timeToStart -= Time.deltaTime;
+        timeText.text = _timeToStart <= 1 ? "GO!" : _timeToStart.ToString("F0");
     }
 }
