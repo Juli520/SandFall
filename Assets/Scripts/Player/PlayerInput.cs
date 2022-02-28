@@ -64,7 +64,7 @@ public class PlayerInput : MonoBehaviourPun
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
         _verticalMovement = Input.GetAxisRaw("Vertical");
 
-        Vector3 movementDirection = new Vector3(_horizontalMovement, 0, _verticalMovement);
+        Vector3 movementDirection = new Vector3(-_horizontalMovement, 0, -_verticalMovement);
         movementDirection.Normalize();
         
         transform.Translate(movementDirection * _state.speed * Time.deltaTime, Space.World);
