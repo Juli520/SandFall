@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class InvisibleWall : MonoBehaviour
+public class InvisibleWall : MonoBehaviourPun
 {
     private void Start()
     {
-        Destroy(gameObject, LevelManager.Instance.timeToStart);
+        Invoke(nameof(DestroyWall), LevelManager.Instance.timeToStart);
+    }
+
+    private void DestroyWall()
+    {
+        PhotonNetwork.Destroy(gameObject);   
     }
 }
