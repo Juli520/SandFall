@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class LevelManager : MonoBehaviourPun
     
     [Header("Objects")] 
     public GameObject[] players;
+    public GameObject playerCamera;
     public Transform[] spawnPoints;
     [Header("Initial Count")] 
     public float timeToStart = 5;
@@ -36,21 +38,35 @@ public class LevelManager : MonoBehaviourPun
 
     private void SpawnPlayers()
     {
+        GameObject player = null;
+        
         switch (PhotonNetwork.LocalPlayer.ActorNumber)
         {
             case 1:
-                PhotonNetwork.Instantiate("Prefabs/" + players[0].name, spawnPoints[0].position, Quaternion.identity);
+                player = PhotonNetwork.Instantiate("Prefabs/" + players[0].name, spawnPoints[0].position, Quaternion.identity);
                 break;
             case 2:
-                PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[1].position, Quaternion.identity);
+                player = PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[1].position, Quaternion.identity);
                 break;
             case 3:
-                PhotonNetwork.Instantiate("Prefabs/" + players[2].name, spawnPoints[2].position, Quaternion.identity);
+                player = PhotonNetwork.Instantiate("Prefabs/" + players[2].name, spawnPoints[2].position, Quaternion.identity);
                 break;
             case 4:
-                PhotonNetwork.Instantiate("Prefabs/" + players[3].name, spawnPoints[3].position, Quaternion.identity);
+                player = PhotonNetwork.Instantiate("Prefabs/" + players[3].name, spawnPoints[3].position, Quaternion.identity);
                 break;
         }
+
+        /*if (player != null)
+            SpawnCamera(player);*/
+    }
+
+    private void SpawnCamera(GameObject player)
+    {
+        GameObject cam = PhotonNetwork.Instantiate("Prefabs/" + playerCamera.name, playerCamera.transform.position,
+            playerCamera.transform.rotation);
+        
+        PlayerCamera pCam = cam.GetComponent<PlayerCamera>();
+        pCam.target = player?.transform;
     }
     
     public void SumPlayersDead()
