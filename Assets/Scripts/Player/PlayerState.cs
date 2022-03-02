@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerState : MonoBehaviourPun
 {
@@ -14,9 +15,6 @@ public class PlayerState : MonoBehaviourPun
     public Collider hitBox;
     [Header("Death")]
     public float deathHeight = -2f;
-    
-    [SerializeField] Camera myCam;
-    Photon.Realtime.Player myPlayer;
 
     private LevelManager _lvlManager;
 
@@ -24,20 +22,11 @@ public class PlayerState : MonoBehaviourPun
     
     private void Awake()
     {
-        if (!photonView.IsMine)
-            Destroy(myCam.gameObject);
-        else
-            photonView.RPC("SetOwn", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer);
+        if(!photonView.IsMine) return;
 
         _lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 
         _baseJumpForce = jumpForce;
-    }
-    
-    [PunRPC]
-    private void SetOwn(Photon.Realtime.Player _myPlayer)
-    {
-        myPlayer = _myPlayer;
     }
 
     private void Update()

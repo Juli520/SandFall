@@ -5,19 +5,41 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviourPun
 {
     public float distance;
-    [SerializeField, HideInInspector]private Transform _target;
+    public Transform target;
 
-    private void Awake()
+    private void Start()
     {
-        if(!photonView.IsMine) return;
-        
-        _target = transform.parent;
+        //if(!photonView.IsMine) return;
+
+        Invoke("SetTarget", 2f);
     }
 
     private void Update()
     {
         if(!photonView.IsMine) return;
-		
-        transform.position = new Vector3(transform.position.x, _target.transform.position.y + distance, transform.position.z);
+
+        transform.position = new Vector3(transform.position.x, target.transform.position.y + distance, transform.position.z);
+    }
+
+    public void SetTarget()
+    {
+        switch (name)
+        {
+            case "Main Camera":
+                target = GameObject.Find("Player 1(Clone)").GetComponent<Transform>();
+                break;
+            
+            case "Main Camera (1)":
+                target = GameObject.Find("Player 2(Clone)").GetComponent<Transform>();
+                break;
+            
+            case "Main Camera (2)":
+                target = GameObject.Find("Player 3(Clone)").GetComponent<Transform>();
+                break;
+            
+            case "Main Camera (3)":
+                target = GameObject.Find("Player 4(Clone)").GetComponent<Transform>();
+                break;
+        }
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1458748272263007092}
   - component: {fileID: 1699903761582770266}
   - component: {fileID: 824869714398543581}
+  - component: {fileID: 2428986681809735936}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 15
-  _target: {fileID: 0}
+  target: {fileID: 0}
 --- !u!114 &1699903761582770266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,3 +157,12 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!45 &2428986681809735936
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458748272263007088}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: c576e782601326547a71046da65d45d0, type: 2}
