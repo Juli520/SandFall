@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void SmmPlayersDeadRPC()
+    public void SumPlayersDeadRPC()
     {
         playersDead++;
     }
