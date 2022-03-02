@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class LevelManager : MonoBehaviourPun
     
     [Header("Objects")] 
     public GameObject[] players;
+    public GameObject playerCamera;
     public Transform[] spawnPoints;
     [Header("Initial Count")] 
     public float timeToStart = 5;
@@ -36,6 +38,8 @@ public class LevelManager : MonoBehaviourPun
 
     private void SpawnPlayers()
     {
+        GameObject player = null;
+        
         switch (PhotonNetwork.LocalPlayer.ActorNumber)
         {
             case 1:
@@ -52,7 +56,7 @@ public class LevelManager : MonoBehaviourPun
                 break;
         }
     }
-    
+
     public void SumPlayersDead()
     {
         photonView.RPC("SumPlayersDeadRPC", RpcTarget.All);
