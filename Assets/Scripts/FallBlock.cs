@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
-public class FallBlock : MonoBehaviour
+public class FallBlock : MonoBehaviourPun
 {
     public float standTime = 1f;
     public float destroyTime = 0.5f;
@@ -35,9 +36,17 @@ public class FallBlock : MonoBehaviour
         _rb.constraints = RigidbodyConstraints.None;
 
         yield return new WaitForSeconds(destroyTime);
-        Destroy(gameObject);
+        DestroyBlock();
     }
 
+    private void DestroyBlock()
+    {
+        if(!photonView.IsMine)
+            return;
+
+        PhotonNetwork.Destroy(gameObject);
+    }
+    
     public void SetFall()
     {
         _canFall = true;

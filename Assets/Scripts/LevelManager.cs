@@ -43,32 +43,20 @@ public class LevelManager : MonoBehaviourPun
         switch (PhotonNetwork.LocalPlayer.ActorNumber)
         {
             case 1:
-                player = PhotonNetwork.Instantiate("Prefabs/" + players[0].name, spawnPoints[0].position, Quaternion.identity);
+                PhotonNetwork.Instantiate("Prefabs/" + players[0].name, spawnPoints[0].position, Quaternion.identity);
                 break;
             case 2:
-                player = PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[1].position, Quaternion.identity);
+                PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[1].position, Quaternion.identity);
                 break;
             case 3:
-                player = PhotonNetwork.Instantiate("Prefabs/" + players[2].name, spawnPoints[2].position, Quaternion.identity);
+                PhotonNetwork.Instantiate("Prefabs/" + players[2].name, spawnPoints[2].position, Quaternion.identity);
                 break;
             case 4:
-                player = PhotonNetwork.Instantiate("Prefabs/" + players[3].name, spawnPoints[3].position, Quaternion.identity);
+                PhotonNetwork.Instantiate("Prefabs/" + players[3].name, spawnPoints[3].position, Quaternion.identity);
                 break;
         }
-
-        /*if (player != null)
-            SpawnCamera(player);*/
     }
 
-    private void SpawnCamera(GameObject player)
-    {
-        GameObject cam = PhotonNetwork.Instantiate("Prefabs/" + playerCamera.name, playerCamera.transform.position,
-            playerCamera.transform.rotation);
-        
-        PlayerCamera pCam = cam.GetComponent<PlayerCamera>();
-        pCam.target = player?.transform;
-    }
-    
     public void SumPlayersDead()
     {
         photonView.RPC("SumPlayersDeadRPC", RpcTarget.All);
