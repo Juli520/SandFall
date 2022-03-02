@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerState : MonoBehaviourPun
 {
@@ -14,9 +15,7 @@ public class PlayerState : MonoBehaviourPun
     public Collider hitBox;
     [Header("Death")]
     public float deathHeight = -2f;
-    
-    private Camera _myCam;
-    
+
     private LevelManager _lvlManager;
 
     private float _baseJumpForce;
@@ -24,25 +23,6 @@ public class PlayerState : MonoBehaviourPun
     private void Awake()
     {
         if(!photonView.IsMine) return;
-        
-        switch (PhotonNetwork.LocalPlayer.ActorNumber)
-        {
-            case 1:
-                _myCam = GameObject.Find("Main Camera").GetComponent<Camera>();
-                break;
-            
-            case 2:
-                _myCam = GameObject.Find("Main Camera (1)").GetComponent<Camera>();
-                break;
-            
-            case 3:
-                _myCam = GameObject.Find("Main Camera (2)").GetComponent<Camera>();
-                break;
-            
-            case 4:
-                _myCam = GameObject.Find("Main Camera (3)").GetComponent<Camera>();
-                break;
-        }
 
         _lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
 

@@ -171,7 +171,6 @@ MonoBehaviour:
   pushForce: 3
   hitBox: {fileID: 688939943873003678}
   deathHeight: 0
-  myCam: {fileID: 0}
 --- !u!114 &4298300779154286788
 MonoBehaviour:
   m_ObjectHideFlags: 0

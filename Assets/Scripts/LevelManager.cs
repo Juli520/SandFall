@@ -22,10 +22,7 @@ public class LevelManager : MonoBehaviourPun
             Instance = this;
         else
             Destroy(gameObject);
-    }
-
-    private void Start()
-    {
+        
         SpawnPlayers();
     }
 
@@ -48,10 +45,10 @@ public class LevelManager : MonoBehaviourPun
                 PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[1].position, Quaternion.identity);
                 break;
             case 3:
-                PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[2].position, Quaternion.identity);
+                PhotonNetwork.Instantiate("Prefabs/" + players[2].name, spawnPoints[2].position, Quaternion.identity);
                 break;
             case 4:
-                PhotonNetwork.Instantiate("Prefabs/" + players[1].name, spawnPoints[3].position, Quaternion.identity);
+                PhotonNetwork.Instantiate("Prefabs/" + players[3].name, spawnPoints[3].position, Quaternion.identity);
                 break;
         }
     }
