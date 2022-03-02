@@ -2,7 +2,7 @@
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviourPun
+public class PlayerCamera : MonoBehaviour
 {
     public float distance;
     public Transform target;
@@ -31,7 +31,7 @@ public class PlayerCamera : MonoBehaviourPun
     
     private void Update()
     {
-        if(!photonView.IsMine || target == null) return;
+        if(/*!photonView.IsMine ||*/ target == null) return;
 
         transform.position = new Vector3(transform.position.x, target.transform.position.y + distance, transform.position.z);
     }
