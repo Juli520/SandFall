@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de59b5801a807e42ac3f3890368e8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToSpawn: 1
+  timeToSpawn: 10
   boundaryX: 8
   boundaryZ: 8
-  dropHeight: 60
+  dropHeight: 120
   jumpPowerUp: {fileID: 5924856594585773958, guid: 4971f5ed6d4e18943b1ecba6300670a4,
     type: 3}
 --- !u!114 &8472738453610673358
