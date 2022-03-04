@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public static LobbyManager Instance;
-    [Header("Scene Change")]
+    [Header("Game Handling")] 
+    [Range(1, 4)]
+    public int minPlayers = 1;
+    [Header("Scene Handling")]
     public string sceneLevelName;
     public string sceneMenuName;
     [Header("Error Handling")]
@@ -14,6 +17,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [Header("Connection Handling")]
     public GameObject connectingMenu;
     public GameObject selectionMenu;
+    public GameObject controlsMenu;
     public GameObject mainMenu;
     
     private string _roomName = string.Empty;
@@ -47,7 +51,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void LeaveLobby()
     {
-        //PhotonNetwork.LeaveLobby();
         PhotonNetwork.LeaveRoom();
     }
 
@@ -95,10 +98,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CheckPlayerCount()
     {
-        //if (PhotonNetwork.PlayerList.Length == 4)
-        photonView.RPC("StartGame", RpcTarget.All);
-        //else
-            //error.SetActive(true);
+        if (PhotonNetwork.PlayerList.Length == minPlayers)
+            photonView.RPC("StartGame", RpcTarget.All);
+        else
+            errorText.SetActive(true);
     }
     
     [PunRPC]
@@ -117,7 +120,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CheckConnection()
     {
-        if (PhotonNetwork.IsConnected && !mainMenu.activeSelf)
+        if (PhotonNetwork.IsConnected && !mainMenu.activeSelf && !controlsMenu.activeSelf)
         {
             connectingMenu.SetActive(false);
             selectionMenu.SetActive(true);
