@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToSpawn: 10
-  boundaryX: 8
-  boundaryZ: 8
+  boundaryX: 6
+  boundaryZ: 6
   dropHeight: 120
   jumpPowerUp: {fileID: 5924856594585773958, guid: 4971f5ed6d4e18943b1ecba6300670a4,
     type: 3}
@@ -82,8 +82,6 @@ MonoBehaviour:
   - {fileID: 4298300779154286789, guid: da03eda70ce270540b9a2699c7d3fe54, type: 3}
   - {fileID: 4298300779154286789, guid: 310cb148185ed9045bc6ae9b2b2a8057, type: 3}
   - {fileID: 4298300779154286789, guid: b89cf712b08accc468070f8891162fb5, type: 3}
-  playerCamera: {fileID: 1458748272263007088, guid: c312651135bce7244862e2ddbea4b82c,
-    type: 3}
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}

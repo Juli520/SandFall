@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviourPun
     
     [Header("Objects")] 
     public GameObject[] players;
-    public GameObject playerCamera;
     public Transform[] spawnPoints;
     [Header("Initial Count")] 
     public float timeToStart = 5;
@@ -32,7 +31,7 @@ public class LevelManager : MonoBehaviourPun
     {
         if(!photonView.IsMine) return;
         
-        if(playersDead == 3)
+        if(playersDead == PhotonNetwork.PlayerList.Length - 1)
             LoadWinScene();
     }
 
@@ -77,7 +76,7 @@ public class LevelManager : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void SumPlayersDeadRPC()
+    private void SumPlayersDeadRPC()
     {
         playersDead++;
     }
