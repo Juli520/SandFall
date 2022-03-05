@@ -10,7 +10,7 @@ public class PowerUpSpawner : MonoBehaviourPun
     public float dropHeight = 35;
     public GameObject jumpPowerUp;
 
-    private float _currentTime;
+    [SerializeField, HideInInspector]private float _currentTime;
 
     private void Awake()
     {

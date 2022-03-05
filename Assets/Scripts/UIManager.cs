@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public TMP_Text timeText;
     
-    private float _timeToStart;
+    [SerializeField, HideInInspector]private float _timeToStart;
 
     private void Start()
     {
