@@ -6670,7 +6670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e9701452e3f2643853e4532130922a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPlayers: 4
+  minPlayers: 1
   sceneLevelName: Level
   sceneMenuName: Main Menu
   errorText: {fileID: 1161969120}
@@ -7650,7 +7650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1161969121
 RectTransform:
   m_ObjectHideFlags: 0

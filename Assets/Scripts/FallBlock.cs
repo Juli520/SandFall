@@ -36,15 +36,14 @@ public class FallBlock : MonoBehaviourPun
         _rb.constraints = RigidbodyConstraints.None;
 
         yield return new WaitForSeconds(destroyTime);
-        DestroyBlock();
+        photonView.RPC("DestroyBlock", RpcTarget.All);
     }
 
+    [PunRPC]
     private void DestroyBlock()
     {
-        if(!photonView.IsMine)
-            return;
-
-        PhotonNetwork.Destroy(gameObject);
+        //PhotonNetwork.Destroy(gameObject);
+        Destroy(gameObject);
     }
     
     public void SetFall()

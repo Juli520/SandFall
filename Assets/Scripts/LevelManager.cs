@@ -37,8 +37,6 @@ public class LevelManager : MonoBehaviourPun
 
     private void SpawnPlayers()
     {
-        GameObject player = null;
-        
         switch (PhotonNetwork.LocalPlayer.ActorNumber)
         {
             case 1:
