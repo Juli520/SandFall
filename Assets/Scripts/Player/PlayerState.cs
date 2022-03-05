@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -15,17 +16,21 @@ public class PlayerState : MonoBehaviourPun
     public Collider hitBox;
     [Header("Death")]
     public float deathHeight = -2f;
+    public Player owner;
 
+    [SerializeField, HideInInspector]private float _baseJumpForce;
+    [SerializeField, HideInInspector]private Rigidbody _rb;
+    
     private LevelManager _lvlManager;
 
-    private float _baseJumpForce;
-    
     private void Awake()
     {
         if(!photonView.IsMine) return;
 
         _lvlManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-
+        _rb = GetComponent<Rigidbody>();
+        owner = photonView.Owner;
+        
         _baseJumpForce = jumpForce;
     }
 
@@ -62,5 +67,16 @@ public class PlayerState : MonoBehaviourPun
         _lvlManager.SumPlayersDead();
         _lvlManager.LoadLoseScene();
         PhotonNetwork.Destroy(gameObject);
+    }
+    
+    [PunRPC]
+    public void PushedByOtherPlayer(Vector3 direction)
+    {
+        _rb.AddForce(direction, ForceMode.Impulse);
+    }
+    
+    internal void PushPlayer(Player target, Vector3 direction)
+    {
+        photonView.RPC("PushedByOtherPlayer", target, direction);
     }
 }
