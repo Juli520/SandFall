@@ -98,7 +98,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CheckPlayerCount()
     {
-        if (PhotonNetwork.PlayerList.Length == minPlayers)
+        if (PhotonNetwork.PlayerList.Length >= minPlayers)
             photonView.RPC("StartGame", RpcTarget.All);
         else
             errorText.SetActive(true);
