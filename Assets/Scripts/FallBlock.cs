@@ -41,8 +41,7 @@ public class FallBlock : MonoBehaviourPun
 
     [PunRPC]
     private void DestroyBlock()
-    {
-        //PhotonNetwork.Destroy(gameObject);
+    { ;
         Destroy(gameObject);
     }
     

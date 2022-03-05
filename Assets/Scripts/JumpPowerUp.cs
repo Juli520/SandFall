@@ -9,7 +9,12 @@ public class JumpPowerUp : MonoBehaviourPun
 
     private void Awake()
     {
-        Destroy(gameObject, timeToDestroy);
+        Invoke(nameof(DestroyPowerUp), timeToDestroy);
+    }
+
+    private void DestroyPowerUp()
+    {
+        PhotonNetwork.Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -19,7 +24,7 @@ public class JumpPowerUp : MonoBehaviourPun
         if (other.gameObject.layer == 8)
         {
             other.gameObject.GetComponent<PlayerState>().ApplyBuff(multiplier, duration);
-            PhotonNetwork.Destroy(gameObject);
+            DestroyPowerUp();
         }
     }
 }

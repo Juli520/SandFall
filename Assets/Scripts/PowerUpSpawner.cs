@@ -31,7 +31,8 @@ public class PowerUpSpawner : MonoBehaviourPun
     {
         Vector3 position = new Vector3(Random.Range(-boundaryX, boundaryX), dropHeight, Random.Range(-boundaryZ, boundaryZ));
         Quaternion rotation = new Quaternion(0, Random.Range(0f, 360f), 0, 0);
-        Instantiate(jumpPowerUp, position, rotation);
+        
+        PhotonNetwork.Instantiate("Prefabs/" + jumpPowerUp.name, position, rotation);
         
         _currentTime = timeToSpawn;
     }
