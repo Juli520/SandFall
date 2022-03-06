@@ -41,7 +41,7 @@ public class FallBlock : MonoBehaviourPun
 
     [PunRPC]
     private void DestroyBlock()
-    { ;
+    {
         Destroy(gameObject);
     }
     

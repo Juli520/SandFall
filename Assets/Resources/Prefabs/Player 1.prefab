@@ -189,7 +189,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6180654274671768930}
+  - {fileID: 6185345029916979025}
   - {fileID: 6543359737701332531}
   - {fileID: 8955852144780360036}
   m_Father: {fileID: 0}
@@ -244,6 +244,7 @@ MonoBehaviour:
   pushForce: 3
   hitBox: {fileID: 8599793736871263899}
   deathHeight: 0
+  playerAlive: 1
 --- !u!114 &4298300779154286788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,7 +393,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6180654274671771192}
+  m_GameObject: {fileID: 6179251213095121045}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
@@ -574,13 +575,13 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 95d57195f1ba04c47bac13bf088588a5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128a80094e00bf34fa2555766a7eea0e, type: 3}
---- !u!1 &6180654274671771192 stripped
+--- !u!1 &6179251213095121045 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1975194375736644, guid: 128a80094e00bf34fa2555766a7eea0e,
     type: 3}
   m_PrefabInstance: {fileID: 6180654274671771089}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &6180654274671768930 stripped
+--- !u!4 &6185345029916979025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4744222756475520, guid: 128a80094e00bf34fa2555766a7eea0e,
     type: 3}

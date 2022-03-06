@@ -15,7 +15,8 @@ public class PlayerState : MonoBehaviourPun
     public Collider hitBox;
     [Header("Death")]
     public float deathHeight = -2f;
-
+    public bool playerAlive = true;
+    
     private LevelManager _lvlManager;
 
     private float _baseJumpForce;
@@ -35,6 +36,9 @@ public class PlayerState : MonoBehaviourPun
         
         if (transform.position.y <= deathHeight)
             KillPlayer();
+        
+        if (_lvlManager.playersDead == PhotonNetwork.PlayerList.Length - 1 && playerAlive)
+            _lvlManager.LoadWinScene();
     }
 
     public void ApplyBuff(float multiplier, float duration)
@@ -59,6 +63,7 @@ public class PlayerState : MonoBehaviourPun
 
     private void KillPlayer()
     {
+        playerAlive = false;
         _lvlManager.SumPlayersDead();
         _lvlManager.LoadLoseScene();
         PhotonNetwork.Destroy(gameObject);

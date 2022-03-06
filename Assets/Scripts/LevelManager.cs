@@ -27,14 +27,6 @@ public class LevelManager : MonoBehaviourPun
         SpawnPlayers();
     }
 
-    private void Update()
-    {
-        if(!photonView.IsMine) return;
-        
-        if(playersDead == PhotonNetwork.PlayerList.Length - 1)
-            LoadWinScene();
-    }
-
     private void SpawnPlayers()
     {
         switch (PhotonNetwork.LocalPlayer.ActorNumber)
