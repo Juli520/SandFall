@@ -13,7 +13,6 @@ public class InvisibleWall : MonoBehaviourPun
 
     private void DestroyWall()
     {
-        //PhotonNetwork.Destroy(gameObject);
         Destroy(gameObject);
     }
 }

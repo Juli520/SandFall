@@ -15,7 +15,6 @@ public class JumpPowerUp : MonoBehaviourPun
 
     private void DestroyPowerUp()
     {
-        //PhotonNetwork.Destroy(gameObject);
         Destroy(gameObject);
     }
 
