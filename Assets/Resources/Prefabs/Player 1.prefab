@@ -241,10 +241,11 @@ MonoBehaviour:
   jumpForce: 5
   rotationSpeed: 720
   attackRate: 3
-  pushForce: 3
+  pushForce: 15
   hitBox: {fileID: 8599793736871263899}
   deathHeight: 0
-  playerAlive: 1
+  _baseJumpForce: 0
+  _rb: {fileID: 0}
 --- !u!114 &4298300779154286788
 MonoBehaviour:
   m_ObjectHideFlags: 0

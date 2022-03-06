@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System.Security.Cryptography;
+using Photon.Pun;
 using UnityEngine;
 
 public class JumpPowerUp : MonoBehaviourPun
@@ -14,7 +15,8 @@ public class JumpPowerUp : MonoBehaviourPun
 
     private void DestroyPowerUp()
     {
-        PhotonNetwork.Destroy(gameObject);
+        //PhotonNetwork.Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision other)
